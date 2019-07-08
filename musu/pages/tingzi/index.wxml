@@ -1,0 +1,52 @@
+<view class="page"> 
+    <include src="/components/common/common" />
+    <include src="/components/header/header" />
+    <view class="body after-navber">
+
+
+
+        <view  style="height: 100%;" class="flex-row">
+
+            <view class="flex-grow-1" style="background: #f6dae1">
+                <view>
+                    <scroll-view class="sub-cat-box cat-block-list" scroll-y="true" style="height: 100%;padding: 20rpx;"
+                                 scroll-top="{{sub_cat_list_scroll_top}}">
+
+                        <!-- 小图标模式（开启侧栏） -->
+                        <view class="cat-small-style cat-num-3 flex-row">
+                            <block>
+
+                                <view wx:for="{{goods_list}}" wx:key="{{item.c_id}}" class="flex-grow-0">
+                                    <navigator class="cat-item " url="{{item.c_link}}">
+                                        <image class="cat-icon" src="{{item.c_url}}"></image>
+                                        <view class="cat-name">
+                                            {{item.c_name}}
+                                        </view>
+                                    </navigator>
+                                </view>
+
+                            </block>
+                        </view>
+
+                        <view class="goods-detail">
+                            <import src="../../wxParse/wxParse.wxml" />
+                            <template is="wxParse" data="{{wxParseData:detail.nodes}}" />
+                        </view>
+
+
+                    </scroll-view>
+                </view>
+            </view>
+        </view>
+
+
+
+        <view class="loading-bar {{show_loading_bar?'active':''}}" style="text-align: center">
+            <image style="width: 160rpx;height: 80rpx" src="{{__wxapp_img.system.loading.url}}"></image>
+        </view>
+
+    </view>
+    <include src="/components/footer/footer" />
+
+
+</view>

@@ -1,0 +1,92 @@
+<view class="page">
+    <include src="/components/common/common" />
+    <include src="/components/header/header" />
+    <view class="body after-navber">
+
+        <view class="bottom-bar">
+            <view bindtap="saveAddress">确认提交</view>
+        </view>
+        <view>
+
+            <view class="edit-row">
+                <view class="flex-grow-0 row-label">报备说明：
+
+                    <view>
+                        <view>1、工程报备工程报备</view>
+                        <view>2、工程报备工程报备</view>
+                    </view>
+
+                </view>
+
+
+            </view>
+
+            <view class="edit-row">
+                <view class="flex-grow-0 row-label">工程项目名称</view>
+                <view class="flex-grow-1">
+                    <input placeholder="" value="{{gcbb_name}}" data-name="gcbb_name" bindinput="inputBlur"/>
+                </view>
+            </view>
+
+            <view class="edit-row">
+                <view class="flex-grow-0 row-label">工程项目地址</view>
+                <view class="flex-grow-1">
+                    <input placeholder="" value="{{gcbb_dizhi}}" data-name="gcbb_dizhi" type="number" bindinput="inputBlur"/>
+                </view>
+            </view>
+
+
+            <view class="edit-row">
+                <view class="flex-grow-0 row-label">项目采购详情</view>
+                <view class="flex-grow-1">
+                    <input placeholder="" value="{{gcbb_detail}}" data-name="gcbb_detail" type="number" bindinput="inputBlur"/>
+                </view>
+            </view>
+
+
+            <view class="edit-row">
+                <view class="flex-grow-0 row-label">项目采购详情</view>
+                <view class="flex-grow-1">
+                    <input placeholder="" value="{{mobile}}" data-name="mobile" type="number" bindinput="inputBlur"/>
+                </view>
+            </view>
+
+
+            <view class="edit-row">
+                <view class="flex-grow-0 row-label">项目报备人</view>
+                <view class="flex-grow-1">
+                    <input placeholder="" value="{{gcbb_person}}" data-name="gcbb_person" type="number" bindinput="inputBlur"/>
+                </view>
+            </view>
+
+
+            <view class="edit-row">
+                <view class="flex-grow-0 row-label">项目报备联系电话</view>
+                <view class="flex-grow-1">
+                    <input placeholder="" value="{{gcbb_dianhua}}" data-name="gcbb_dianhua" type="number" bindinput="inputBlur"/>
+                </view>
+            </view>
+            <view class="edit-row">
+                <view class="flex-grow-0 row-label">工程项目甲方联系人/单位</view>
+                <view class="flex-grow-1">
+                    <input placeholder="" value="{{gcbb_jfdanwei}}" data-name="gcbb_jfdanwei" type="number" bindinput="inputBlur"/>
+                </view>
+            </view>
+
+            <view class="edit-row">
+                <view class="flex-grow-0 row-label">工程项目甲方负责人联系电话</view>
+                <view class="flex-grow-1">
+                    <input placeholder="" value="{{gcbb_jfdianhua}}" data-name="gcbb_jfdianhua" type="number" bindinput="inputBlur"/>
+                </view>
+            </view>
+
+            <view class="edit-row" style="height:200rpx;"></view>
+
+
+
+        </view>
+
+    </view>
+    <include src="/components/footer/footer" />
+    <include src="./../../components/area-picker/area-picker.wxml"/>
+</view>

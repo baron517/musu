@@ -1,0 +1,29 @@
+<view class="page">
+    <include src="/components/common/common" />
+    <include src="/components/header/header" />
+    <view class="body">
+        <include src="/components/specifications_model/specifications_model.wxml" />
+        <include src="/components/goods/specifications_model.wxml" />
+
+        <view class="{{(show_attr_picker||show||no_scroll)?'no-scroll':''}}">
+
+            <view style="padding-bottom: 120rpx">
+
+                <view class="bottom-bar">
+                    <view bindtap="yuyue">预约</view>
+                </view>
+
+
+                <view class="goods-detail">
+                    <import src="../../wxParse/wxParse.wxml" />
+                    <template is="wxParse" data="{{wxParseData:detail.nodes}}" />
+                </view>
+
+
+            </view>
+
+
+        </view>
+    </view>
+    <include src="/components/footer/footer" />
+</view>
