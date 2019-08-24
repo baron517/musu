@@ -65,6 +65,8 @@
                         </view>
                     </view>
                 </navigator>
+				
+		
                 <view class="flex-row">
                     <view class="flex-grow-1 flex-y-center">
                         <block wx:if="{{status==4}}">
@@ -76,7 +78,10 @@
                                 换货
                             </block>
                         </block>
-                        <block wx:else>合计：￥{{order.pay_price}}</block>
+                        <block wx:else>合计：￥{{order.pay_price}}
+						
+						<text style="margin-left:10rpx;" wx:if="{{order.order_status}}">状态：{{order.order_status}}</text>
+						</block>
                     </view>
                     <view class="flex-grow-0 flex-y-center flex-row">
                         <block wx:if="{{status==4}}">
@@ -113,7 +118,7 @@
                             </view>
                             <view class="flex-grow-1 flex-row" wx:if="{{order.is_send==1&&order.is_confirm==0}}">
                                 <view class="flex-grow-0" wx:if='{{order.express}}'>
-                                    <navigator class="order-option-btn" url="/pages/express-detail/express-detail?id={{order.order_id}}">物流
+                                    <navigator class="order-option-btn" url="/pages/express-detail/express-detail?id={{order.order_id}}&wuliu={{order.wuliu}}">物流
                                     </navigator>
                                 </view>
                                 <view class="flex-grow-0">

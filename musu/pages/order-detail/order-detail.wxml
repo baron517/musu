@@ -103,6 +103,28 @@
                     <view>商家留言</view>
                     <view class='fs-sm' style='width:100%;overflow:auto;word-wrap:break-word;'>{{order.words}}</view>
                 </view>
+				
+					<view class="border-bottom" style="background: #fff;padding: 24rpx 0;" wx:if='{{infoList}}'>
+                        <view  style="color:#dc0000;padding:0;">报价信息</view>
+						
+						 <view  wx:for="{{infoList}}" style="color:#dc0000;padding:0;">
+								
+								{{item}}
+								
+						  </view>
+                    </view>
+					
+					<view class="border-bottom" style="background: #fff;padding: 24rpx 0;" wx:if='{{infoList1}}'>
+                        <view  style="color:#dc0000;padding:0;">参数信息</view>
+						
+						 <view  wx:for="{{infoList1}}" style="color:#dc0000;padding:0;">
+								
+								{{item}}
+								
+						  </view>
+                    </view>
+				
+				
                 <view class="block-footer">合计：
                     <text style="color: #ff4544">￥{{order.pay_price}}</text>
                 </view>

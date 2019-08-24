@@ -9,6 +9,10 @@ Page({
     data: {
         isPageShow: false,
         order: null,
+		info:'',
+		info1:'',
+		infoList:'',
+		infoList1:'',
         getGoodsTotalPrice: function() {
             return this.data.order.total_price;
         },
@@ -37,6 +41,18 @@ Page({
                         order: res.data,
                         isPageShow: true
                     });
+					
+					if(res.data.info)
+					{
+						self.setData({
+                        infoList1: res.data.info1.split("|")
+						});
+						
+						self.setData({
+                        infoList: res.data.info.split("|")
+						});
+					}
+					
                 }
             },
             complete: function() {

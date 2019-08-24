@@ -77,7 +77,7 @@
                             <block>
 
                                 <view wx:for="{{goods_list}}" wx:key="{{item.id}}" class="flex-grow-0">
-                                    <navigator class="cat-item " url="/pages/list/list?cat_id={{cat_id}}">
+                                    <navigator class="cat-item " url="/pages/list/list?cat_id={{item.id}}">
                                         <image class="cat-icon" src="{{item.big_pic_url}}"></image>
                                         <view class="cat-name">
                                             {{item.name}}

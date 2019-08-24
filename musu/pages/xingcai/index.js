@@ -12,12 +12,30 @@ Page({
         scrollLeft: 0,
         page: 1,
         typeIndex:0,
+        pickerValue:"请选择型材规格",
         cat_id:0,
         cat_style:0,
         active_index:0,
         height:0,
+        goods_list:[],
         catheight:120,
-    }, 
+    },
+
+    changeValue:function(e)
+    {
+        console.log(e.target.id);
+
+        var pIndex=parseInt(e.target.id);
+        var goodsList=this.data.goods_list;
+        console.log(goodsList);
+
+        goodsList[pIndex].activeIndex=e.detail.value;
+
+        this.setData({
+          goods_list:goodsList
+        })
+
+    },
 
     /**
      * 生命周期函数--监听页面加载
@@ -26,6 +44,7 @@ Page({
         var self = this;
         getApp().page.onLoad(self, options);
         var store = getApp().core.getStorageSync(getApp().const.STORE);
+		this.loadData();
 
     },
 
@@ -34,7 +53,7 @@ Page({
 
         getApp().core.hideLoading();
 
-        this.loadData();
+        
 
     },
 
@@ -51,7 +70,8 @@ Page({
         }
 
         getApp().request({
-            url: getApp().api.default.chaxunList,
+            url: getApp().api.default.childListGoods,
+            data:{cat_id:20},
             success: function (res) {
 
                 console.log("分类");

@@ -8,9 +8,22 @@
                     <view class="cart-checkbox {{cart_check_all?'active':''}}" style="margin-right: 10rpx"></view>
                     <text style="white-space: nowrap">全选</text>
                 </view>
-                <view class="flex-grow-1" style="color:#ff4544;white-space: nowrap">
+				
+                <view class="flex-grow-1" style="color:#ff4544;white-space: nowrap" wx:if="{{level==1}}">
+                    总计:￥{{total_price1}}
+                </view>
+				
+				 <view class="flex-grow-1" style="color:#ff4544;white-space: nowrap" wx:elif="{{level==2}}">
+                    总计:￥{{total_price2}}
+                </view>
+				
+				
+				 <view class="flex-grow-1" style="color:#ff4544;white-space: nowrap" wx:else>
                     总计:￥{{total_price}}
                 </view>
+				
+				
+				
             </view>
             <block wx:if="{{show_cart_edit}}">
                 <view class="flex-y-center flex-grow-0 flex-x-center edit-btn" bindtap="cartDone">完成</view>
@@ -67,7 +80,9 @@
                                         </view>
                                     </view>
                                     <view class="flex-grow-0 flex-row">
-                                        <view class="flex-grow-1 price">￥{{item.unitPrice}}</view>
+                                        <view class="flex-grow-1 price" wx:if="{{level==1}}">￥{{item.unitPrice1}}</view>
+												<view class="flex-grow-1 price" wx:elif="{{level==2}}">￥{{item.unitPrice2}}</view>
+												<view class="flex-grow-1 price" wx:else>￥{{item.unitPrice}}</view>
                                         <view>
                                             <view class="flex-row">
                                                 <image wx:if="{{item.num>1}}" bindtap="cartLess" id="{{item.cart_id}}" class="image1" src="{{__wxapp_img.cart.less.url}}" />
@@ -128,7 +143,9 @@
                                                 </view>
                                             </view>
                                             <view class="flex-grow-0 flex-row">
-                                                <view class="flex-grow-1 price">￥{{item.unitPrice}}</view>
+                                                <view class="flex-grow-1 price" wx:if="{{level==1}}">￥{{item.unitPrice1}}</view>
+												<view class="flex-grow-1 price" wx:elif="{{level==2}}">￥{{item.unitPrice2}}</view>
+												<view class="flex-grow-1 price" wx:else>￥{{item.unitPrice}}</view>
                                                 <view>
                                                     <view class="flex-row">
                                                         <image wx:if="{{item.num!=1}}" bindtap="cartLess" data-type="mch" data-mch-index="{{mch_index}}" data-index="{{index}}" id="{{item.cart_id}}" class="image1" src="{{__wxapp_img.cart.less.url}}" />

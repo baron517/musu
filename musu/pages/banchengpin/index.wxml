@@ -7,37 +7,301 @@
 
         <view  style="height: 100%;" class="flex-row">
 
-            <view class="flex-grow-1" style="background: #f6dae1">
+            <view class="top-tab">
+
+                <view  wx:for="{{name_list}}" wx:key="{{item.id}}" wx:for-index="index" id="{{index}}" class="tab-detail {{item.class}}" bindtap="changeTab">
+                    <text>{{item.name}}</text>
+                </view>
+
+            </view>
+
+            <view class="flex-grow-1" style="background: #fff;margin-top:80rpx;">
                 <view>
                     <scroll-view class="sub-cat-box cat-block-list" scroll-y="true" style="height: 100%;padding: 20rpx;"
                                  scroll-top="{{sub_cat_list_scroll_top}}">
 
                         <!-- 小图标模式（开启侧栏） -->
-                        <view class="cat-small-style cat-num-3 flex-row">
+                        <view class="cat-small-style" wx:if="{{activeIndex==2}}">
                             <block>
 
-                                <view wx:for="{{goods_list}}" wx:key="{{item.c_id}}" class="flex-grow-0">
-                                    <navigator class="cat-item " url="{{item.c_link}}">
-                                        <image class="cat-icon" src="{{item.c_url}}"></image>
+                                <view wx:for="{{goods_list}}" wx:key="{{item.c_id}}" class="item-col">
+                                    <navigator class="cat-item " url="/pages/goods/goods?id={{item.id}}">
+
+                                        <image class="cat-icon" src="{{item.cover_pic}}"></image>
+
                                         <view class="cat-name">
-                                            {{item.c_name}}
+                                            {{item.name}} <text class="text"> {{item.xinghao_guige}}</text>
+                                        </view>
+
+                                        <view class="cat-tag">
+                                            {{item.tags}}
+                                        </view>
+                                        <view class="cat-tag">
+                                            {{item.beizhu}}
+                                        </view>
+
+                                        <view class="cat-price">
+                                            {{item.price2}} <text class="unit">元</text>
                                         </view>
                                     </navigator>
                                 </view>
 
                             </block>
                         </view>
+						
+						
+						<view wx:if="{{activeIndex==0}}">
+						
+                       
+						
+						 <view class="xuanze-col" >
+                            <view class="label">葡萄架长度</view>
+                            <input class="xuanze-input" bindinput="cdChange3" type="digit" placeholder="输入长度（米）" />
+                        </view>
 
+                        <view class="xuanze-col" >
+                        <view class="label">立柱规格</view>
+                        <picker class="picker" bindchange="changeValue3"    range="{{lizhuList3}}" range-key="{{'name'}}">
+                            <view class="tui-picker-detail">{{lizhuList3[guigeIndex3].name?lizhuList3[guigeIndex3].name:"请选择立柱规格"}}</view>
+                        </picker>
+                        </view>
+
+                        <view class="xuanze-col" >
+                            <view class="label">立柱尺寸</view>
+                            <view class="tui-picker-detail">{{lizhuList3[guigeIndex3].chicun}}</view>
+                        </view>
+
+                       
+						
+						 <view class="xuanze-col" >
+                            <view class="label">立柱配件</view>
+                            <view class="peijian-list">
+                                
+                                   
+									
+								 <view class="tui-picker-detail"  wx:if="{{level==-1}}">
+                                    {{lizhuList3[guigeIndex3].lizhu}}
+                                </view>
+								 <view class="tui-picker-detail"  wx:elif="{{level==1}}">
+                                    {{lizhuList3[guigeIndex3].lizhu1}}
+                                </view>
+								 <view class="tui-picker-detail"  wx:elif="{{level==2}}">
+                                    {{lizhuList3[guigeIndex3].lizhu2}}
+                                </view>
+									
+									<checkbox-group bindchange="checkboxChange3">
+									  <label class="checkbox" wx:for="{{lizhuList3[guigeIndex3].list}}" wx:for-index="index">
+										<checkbox value="{{index}}" checked="{{item.checked}}"/>
+										{{item.name}}
+									  </label>
+									</checkbox-group>
+
+									
+                               
+                            </view>
+                        </view>
+
+
+                        <view class="xuanze-col" >
+                            <view class="label">刀片名称</view>
+                            <picker class="picker" bindchange="changeValue4"    range="{{lizhuList4}}" range-key="{{'name'}}">
+                                <view class="tui-picker-detail">{{lizhuList4[guigeIndex4].name?lizhuList4[guigeIndex4].name:"请选择刀片名称"}}</view>
+                            </picker>
+                        </view>
+						
+						 <view class="xuanze-col" >
+                            <view class="label">刀梁</view>
+							<view class="tui-picker-detail" style="padding:20rpx 0;">
+                                    <view style="line-height:60rpx;" wx:if="{{level==-1}}">{{lizhuList4[guigeIndex4].include2}}</view>
+									 <view style="line-height:60rpx;" wx:elif="{{level==1}}">{{lizhuList4[guigeIndex4].include21}}</view>
+									  <view style="line-height:60rpx;" wx:elif="{{level==2}}">{{lizhuList4[guigeIndex4].include22}}</view>
+							</view>
+						</view>
+						
+                        <view class="xuanze-col" >
+                            <view class="label">刀片长度</view>
+                            <picker class="picker" bindchange="changeValue5"    range="{{lizhuList5}}" range-key="{{'chicun'}}">
+                                <view class="tui-picker-detail">{{lizhuList5[guigeIndex5].name?lizhuList5[guigeIndex5].chicun:"请选择刀片长度"}}</view>
+                            </picker>
+                        </view>
+						
+						 <view class="xuanze-col" >
+                            <view class="label">说明</view>
+                            <view>
+                                 <view class="tui-picker-detail" >
+                                   {{lizhuList4[guigeIndex4].include1}}
+                                </view>
+                            </view>
+                        </view>
+
+
+                        <view class="button-col">
+                        <view class="button" bindtap="count2">计算结果：</view>
+                        </view>
+
+						<view class="price-col">
+						立柱个数:{{count13}}
+						刀片片数：{{count14}}
+						刀梁价格：{{daoliangMoney}}
+						</view>
+
+                        <view class="price-col">葡萄架价格：<text class="text">{{allMoney1}}</text>元</view>
+						
+						<view bindtap="putaojiaTap"  wx:if="{{allMoney1}}"  class="xiadan-btn">
+										立即下单
+						</view>
+						
+
+                        <view style="color:red;padding:6rpx 0;">注：其余规格定制联系客服</view>
                         <view class="goods-detail">
                             <import src="../../wxParse/wxParse.wxml" />
                             <template is="wxParse" data="{{wxParseData:detail.nodes}}" />
                         </view>
+						
+						</view>
+						
+
+						<view wx:if="{{activeIndex==1}}">
+						
+						<view class="xuanze-col" >
+                            <view class="label">护栏款式</view>
+                           <view class="tui-picker-detail" bindtap="xuanze">{{kuanshi?kuanshi:"请选择"}}</view>
+                        </view>
+						
+                        <view class="xuanze-col" >
+                            <view class="label">总米数</view>
+                            <input class="xuanze-input" bindinput="cdChange1" type="digit" placeholder="输入总米数" />
+                        </view>
+
+                        <view class="xuanze-col" >
+                        <view class="label">立柱规格</view>
+                        <picker class="picker" bindchange="changeValue"    range="{{lizhuList}}" range-key="{{'name'}}">
+                            <view class="tui-picker-detail">{{lizhuList[guigeIndex].name?lizhuList[guigeIndex].name:"请选择立柱规格"}}</view>
+                        </picker>
+                        </view>
+
+                        <view class="xuanze-col" >
+                            <view class="label">立柱尺寸</view>
+                            <view class="tui-picker-detail">{{lizhuList[guigeIndex].chicun}}</view>
+                        </view>
+
+                        <view class="xuanze-col" >
+                            <view class="label">立柱配件</view>
+                            <view class="peijian-list">
+                                
+                                   
+									
+								 <view class="tui-picker-detail"  wx:if="{{level==-1}}">
+                                    {{lizhuList[guigeIndex].lizhu}}
+                                </view>
+								 <view class="tui-picker-detail"  wx:elif="{{level==1}}">
+                                    {{lizhuList[guigeIndex].lizhu1}}
+                                </view>
+								 <view class="tui-picker-detail"  wx:elif="{{level==2}}">
+                                    {{lizhuList[guigeIndex].lizhu2}}
+                                </view>
+									
+									
+									
+									<checkbox-group bindchange="checkboxChange">
+									  <label class="checkbox" wx:for="{{lizhuList[guigeIndex].list}}" wx:for-index="index">
+										<checkbox value="{{index}}" checked="{{item.checked}}"/>
+										{{item.name}}
+									  </label>
+									</checkbox-group>
+
+									
+                               
+                            </view>
+                        </view>
+
+
+                        <view class="xuanze-col" >
+                            <view class="label">扶手/方管</view>
+                            <picker class="picker" bindchange="changeValue1"    range="{{lizhuList1}}" range-key="{{'name'}}">
+                                <view class="tui-picker-detail">{{lizhuList1[guigeIndex1].name?lizhuList1[guigeIndex1].name:"请选择扶手/方管规格"}}</view>
+                            </picker>
+                        </view>
+
+
+                        <view class="xuanze-col" >
+                            <view class="label" style="font-size:24rpx;">护栏片柱中距</view>
+                            <picker class="picker" bindchange="changeValue2"    range="{{lizhuList2}}" range-key="{{'chicun'}}">
+                                <view class="tui-picker-detail">{{lizhuList2[guigeIndex2].name?lizhuList2[guigeIndex2].chicun:"请选择护栏片柱中距"}}</view>
+                            </picker>
+                        </view>
+						
+						 <view class="xuanze-col" >
+                            <view class="label" style="font-size:24rpx;" wx:if="{{lizhuList2[guigeIndex2].price2}}">是否成套组合</view>
+							<view class="label"  wx:else>成套</view>
+                            <view class="peijian-list">
+                                
+                                    <view class="tui-picker-detail">价格：{{lizhuList2[guigeIndex2].priceAll}}元</view>
+									
+									<checkbox-group bindchange="checkboxChange1" wx:if="{{lizhuList2[guigeIndex2].price2}}">
+									  <label class="checkbox">
+										<checkbox value="{{lizhuList2[guigeIndex2].value}}" />
+										{{lizhuList2[guigeIndex2].price2}}元/套
+									  </label>
+									 
+									</checkbox-group>
+
+                            </view>
+                        </view>
+						
+						
+						 <view class="xuanze-col" >
+                            <view class="label">说明</view>
+                            <view>
+                                <view class="tui-picker-detail" >
+                                    {{lizhuList1[guigeIndex1].include1}}
+                                </view>
+								
+								 <view class="tui-picker-detail">
+                                    {{lizhuList1[guigeIndex1].include2}}
+                                </view>
+								 
+								
+								
+								
+                            </view>
+                        </view>
+
+
+                        <view class="button-col">
+                        <view class="button" bindtap="count1">计算结果：</view>
+                        </view>
+
+						<view class="price-col">
+						出立柱个数:{{count11}}
+						护栏片数：{{count12}}
+						</view>
+
+                        <view class="price-col">
+						护栏价格：<text class="text">{{allMoney}}</text>元
+						</view>
+
+						
+						
+						<view bindtap="putaojiaTap1"  wx:if="{{allMoney}}"  class="xiadan-btn">
+										立即下单
+						</view>
+
+                        <view style="color:red;padding:6rpx 0;">注：其余规格定制联系客服</view>
+                        <view class="goods-detail">
+                            <import src="../../wxParse/wxParse.wxml" />
+                            <template is="wxParse" data="{{wxParseData:detail.nodes}}" />
+                        </view>
+						
+						</view>
 
 
                     </scroll-view>
                 </view>
             </view>
         </view>
+
+
 
 
 

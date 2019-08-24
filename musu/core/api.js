@@ -22,11 +22,28 @@ let api = {
         cat_list: _api_root + 'default/cat-list',
         yiji: api_url + 'g=Api&m=Project&a=yiji',
         childList: api_url + 'g=Api&m=Project&a=childList',
+        childListGoods: api_url + 'g=Api&m=Project&a=childListGoods',
         goodList: api_url + 'g=Api&m=Project&a=goodList',
+
+        tingzifahuo: api_url + 'g=Api&m=Project&a=tingzifahuo',
+        yangtaiList: api_url + 'g=Api&m=Project&a=yangtaiList',
+		
+		kucunxilie: api_url + 'g=Api&m=Project&a=kucunxilie',
+
+        huaxiangList: api_url + 'g=Api&m=Project&a=huaxiangList',
+
+        tingziList: api_url + 'g=Api&m=Project&a=tingziList',
+		hulanList: api_url + 'g=Api&m=Project&a=hulanList',
+
+        chengpinList: api_url + 'g=Api&m=Project&a=chengpinList',
 
         chaxunList: api_url + 'g=Api&m=Project&a=chaxunList',
         fahuo: api_url + 'g=Api&m=Project&a=fahuo',
         kucunchaxun: api_url + 'g=Api&m=Project&a=kucunchaxun',
+
+        banchengpinfahuo: api_url + 'g=Api&m=Project&a=banchengpinfahuo',
+
+        hulanData: api_url + 'g=Api&m=Project&a=hulanData',
 
         goods: _api_root + 'default/goods',
         district: _api_root + 'default/district',

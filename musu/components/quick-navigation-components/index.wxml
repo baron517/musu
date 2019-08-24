@@ -81,8 +81,8 @@
         <image src="{{click_pic.close}}" mode="aspectFill" style="width: 80rpx;height: 80rpx;display:block;" bindtap="cutover" wx:if="{{click_pic}}"></image>
         <block wx:else>
             <view class="flex-col flex-y-center flex-x-center quick-bg" bindtap="cutover">
-                <text class="quick-text">快捷</text>
-                <text class="quick-text">导航</text>
+                <text class="quick-text">联系</text>
+                <text class="quick-text">客服</text>
             </view>
         </block>
     </view>

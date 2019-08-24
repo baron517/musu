@@ -62,13 +62,19 @@
                                                 </view>
                                             </view>
                                             <view class="flex-grow-0 flex-row">
+											
+											
                                                 <view class="flex-grow-1 num">×{{goods.num}}</view>
-                                                <view class="flex-grow-0 price" style='text-decoration:line-through' wx:if="{{goods.is_level == 1}}">￥:{{goods.price}}</view>
-                                                <view class="flex-grow-0 price" wx:else>￥:{{goods.price}}</view>
+												
+												<view class="flex-grow-0 price" wx:if="{{priceValue}}">￥:{{priceValue}}</view>
+												
+                                                <view class="flex-grow-0 price" wx:elif="{{levelValue==1}}">￥:{{goods.price1}}</view>
+												<view class="flex-grow-0 price" wx:elif="{{levelValue==2}}">￥:{{goods.price2}}</view>
+												<view class="flex-grow-0 price" wx:else="{{levelValue==-1}}">￥:{{goods.price}}</view>
                                             </view>
                                         </view>
                                     </view>
-                                    <view wx:if="{{goods.is_level == 1}}" style='color:#ff4544;text-align:right;margin-bottom:22rpx;'>会员折扣价：￥{{goods.level_price}}</view>
+                                    
                                 </view>
                                 <view class='goods-intrgral flex-row' wx:if="{{goods.give > 0}}">
                                     <view class='flex-y-center'> 订单完成赠送</view>
@@ -204,9 +210,31 @@
                     <view class="flex flex-row flex-y-center border-bottom" style="background: #fff;padding: 0 24rpx;height: 90rpx" wx:if='{{(item.form.is_form == 0 && item.mch_id == 0) || item.mch_id > 0}}'>
                         <view class="flex-grow-0">买家留言</view>
                         <view class="flex-grow-0" style="padding-left: 24rpx">
-                            <input name="content" data-index="{{index}}" bindinput="bindContentInput" placeholder="请填写备注" value="{{item.content}}" style='width:100%;' />
+                            <input name="content" data-index="{{index}}" bindinput="bindContentInput" placeholder="请填写备注,如颜色等要求" value="{{item.content}}" style='width:100%;' />
                         </view>
                     </view>
+					
+					<view class="border-bottom" style="background: #fff;padding: 24rpx 24rpx;" wx:if='{{info}}'>
+                        <view  style="color:#dc0000;padding:0;">报价信息</view>
+						
+						 <view  wx:for="{{infoList}}" style="color:#dc0000;padding:0;">
+								
+								{{item}}
+								
+						  </view>
+                    </view>
+					
+					<view class="border-bottom" style="background: #fff;padding: 24rpx 24rpx;" wx:if='{{info1}}'>
+                        <view  style="color:#dc0000;padding:0;">参数信息</view>
+						
+						 <view  wx:for="{{infoList1}}" style="color:#dc0000;padding:0;">
+								
+								{{item}}
+								
+						  </view>
+                    </view>
+					
+					
                     <!--自定义表单-->
                     <block wx:if='{{item.mch_id == 0 && item.form && item.form.is_form == 1 && item.form.list.length>0}}'>
                         <import src="/components/order/order-submit/form/form" />
@@ -225,8 +253,21 @@
             <block wx:else>
                 <cover-view class="bottom-bar flex-row">
                     <cover-view class="flex-y-center flex-grow-1" style="padding: 0 24rpx">
-                        <cover-view class="flex-grow-1" style="color:#ff4544 ">
+					
+                        <cover-view class="flex-grow-1" style="color:#ff4544 " wx:if="{{priceValue}}">
+                            总计：￥{{priceValue}}
+                        </cover-view>
+						
+						 <cover-view class="flex-grow-1" style="color:#ff4544 " wx:elif="{{levelValue==-1}}">
                             总计：￥{{new_total_price}}
+                        </cover-view>
+						
+						<cover-view class="flex-grow-1" style="color:#ff4544 " wx:elif="{{levelValue==1}}">
+                            总计：￥{{new_total_price1}}
+                        </cover-view>
+						
+						<cover-view class="flex-grow-1" style="color:#ff4544 " wx:else>
+                            总计：￥{{new_total_price2}}
                         </cover-view>
 
                     </cover-view>

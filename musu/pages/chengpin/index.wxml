@@ -13,25 +13,43 @@
                                  scroll-top="{{sub_cat_list_scroll_top}}">
 
                         <!-- 小图标模式（开启侧栏） -->
-                        <view class="cat-small-style cat-num-3 flex-row">
+                        <view class="cat-small-style">
                             <block>
 
-                                <view wx:for="{{goods_list}}" wx:key="{{item.c_id}}" class="flex-grow-0">
-                                    <navigator class="cat-item " url="{{item.c_link}}">
-                                        <image class="cat-icon" src="{{item.c_url}}"></image>
+                                <view wx:for="{{goods_list}}" wx:key="{{item.c_id}}" class="item-col">
+                                    <navigator class="cat-item " url="/pages/goods/goods?id={{item.id}}">
+
+                                        <image class="cat-icon" src="{{item.cover_pic}}"></image>
+
                                         <view class="cat-name">
-                                            {{item.c_name}}
+                                            {{item.name}}
                                         </view>
+
+                                        <view class="cat-tag">
+                                            {{item.beizhu}}
+                                        </view>
+										
+										 <view class="cat-price" wx:if="{{level==1}}">
+                                            {{item.price1}}
+											<text class="unit">元/{{item.unit}}</text>
+                                        </view>
+										
+										  <view class="cat-price" wx:elif="{{level==2}}">
+                                            {{item.price2}}
+											<text class="unit">元/{{item.unit}}</text>
+                                        </view>
+										
+										 <view class="cat-price" wx:else>
+                                            {{item.price}}
+											<text class="unit">元/{{item.unit}}</text>
+                                        </view>
+										
                                     </navigator>
                                 </view>
 
                             </block>
                         </view>
 
-                        <view class="goods-detail">
-                            <import src="../../wxParse/wxParse.wxml" />
-                            <template is="wxParse" data="{{wxParseData:detail.nodes}}" />
-                        </view>
 
 
                     </scroll-view>

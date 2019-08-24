@@ -12,8 +12,8 @@
                 <view class="flex-grow-0 row-label">报备说明：
 
                     <view>
-                        <view>1、工程报备工程报备</view>
-                        <view>2、工程报备工程报备</view>
+                        <view>1、工程报备材料</view>
+                        <view>2、工程报备信息</view>
                     </view>
 
                 </view>
@@ -24,14 +24,14 @@
             <view class="edit-row">
                 <view class="flex-grow-0 row-label">工程项目名称</view>
                 <view class="flex-grow-1">
-                    <input placeholder="" value="{{gcbb_name}}" data-name="gcbb_name" bindinput="inputBlur"/>
+                    <input placeholder="请输入工程名称" value="{{gcbb_name}}" data-name="gcbb_name" bindinput="inputBlur"/>
                 </view>
             </view>
 
             <view class="edit-row">
                 <view class="flex-grow-0 row-label">工程项目地址</view>
                 <view class="flex-grow-1">
-                    <input placeholder="" value="{{gcbb_dizhi}}" data-name="gcbb_dizhi" type="number" bindinput="inputBlur"/>
+                    <input placeholder="请输入项目地址" value="{{gcbb_dizhi}}" data-name="gcbb_dizhi" type="number" bindinput="inputBlur"/>
                 </view>
             </view>
 
@@ -39,23 +39,14 @@
             <view class="edit-row">
                 <view class="flex-grow-0 row-label">项目采购详情</view>
                 <view class="flex-grow-1">
-                    <input placeholder="" value="{{gcbb_detail}}" data-name="gcbb_detail" type="number" bindinput="inputBlur"/>
+                    <input placeholder="请输入项目采购详情" value="{{gcbb_detail}}" data-name="gcbb_detail" type="number" bindinput="inputBlur"/>
                 </view>
             </view>
-
-
-            <view class="edit-row">
-                <view class="flex-grow-0 row-label">项目采购详情</view>
-                <view class="flex-grow-1">
-                    <input placeholder="" value="{{mobile}}" data-name="mobile" type="number" bindinput="inputBlur"/>
-                </view>
-            </view>
-
 
             <view class="edit-row">
                 <view class="flex-grow-0 row-label">项目报备人</view>
                 <view class="flex-grow-1">
-                    <input placeholder="" value="{{gcbb_person}}" data-name="gcbb_person" type="number" bindinput="inputBlur"/>
+                    <input placeholder="请输入项目报备人" value="{{gcbb_person}}" data-name="gcbb_person" type="number" bindinput="inputBlur"/>
                 </view>
             </view>
 
@@ -63,20 +54,20 @@
             <view class="edit-row">
                 <view class="flex-grow-0 row-label">项目报备联系电话</view>
                 <view class="flex-grow-1">
-                    <input placeholder="" value="{{gcbb_dianhua}}" data-name="gcbb_dianhua" type="number" bindinput="inputBlur"/>
+                    <input placeholder="请输入项目报备联系电话" value="{{gcbb_dianhua}}" data-name="gcbb_dianhua" type="number" bindinput="inputBlur"/>
                 </view>
             </view>
             <view class="edit-row">
                 <view class="flex-grow-0 row-label">工程项目甲方联系人/单位</view>
                 <view class="flex-grow-1">
-                    <input placeholder="" value="{{gcbb_jfdanwei}}" data-name="gcbb_jfdanwei" type="number" bindinput="inputBlur"/>
+                    <input placeholder="请输入工程项目甲方联系人/单位" value="{{gcbb_jfdanwei}}" data-name="gcbb_jfdanwei" type="number" bindinput="inputBlur"/>
                 </view>
             </view>
 
             <view class="edit-row">
                 <view class="flex-grow-0 row-label">工程项目甲方负责人联系电话</view>
                 <view class="flex-grow-1">
-                    <input placeholder="" value="{{gcbb_jfdianhua}}" data-name="gcbb_jfdianhua" type="number" bindinput="inputBlur"/>
+                    <input placeholder="请输入工程项目甲方负责人联系电话" value="{{gcbb_jfdianhua}}" data-name="gcbb_jfdianhua" type="number" bindinput="inputBlur"/>
                 </view>
             </view>
 

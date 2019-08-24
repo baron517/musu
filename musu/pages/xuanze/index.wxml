@@ -16,8 +16,8 @@
                         <view class="cat-small-style">
                             <block>
 
-                                <view wx:for="{{goods_list}}" wx:key="{{item.c_id}}" class="item-col">
-                                    <navigator class="cat-item " url="/pages/goods/goods?id={{item.id}}">
+                                <view wx:for="{{goods_list}}" wx:key="{{item.c_id}}" class="item-col" wx:for-index="index">
+                                    <view class="cat-item " id="{{index}}"   bindtap="xuanze">
 
                                         <image class="cat-icon" src="{{item.cover_pic}}"></image>
 
@@ -25,31 +25,11 @@
                                             {{item.name}}
                                         </view>
 
-										<view style="margin-left:12rpx;">
-										库存：{{item.goods_num}} <text style="margin-left:10rpx;">定长：{{item.xinghao_guige}}mm</text>
-										</view>
+                                        <view class="cat-tag">
+                                            护栏系列
+                                        </view>
 
-
-                                        <view class="cat-price" wx:if="{{level==1}}">
-                                            {{item.price1}}
-											<text class="unit">元/{{item.unit}}</text>
-                                        </view>
-										
-										  <view class="cat-price" wx:elif="{{level==2}}">
-                                            {{item.price2}}
-											<text class="unit">元/{{item.unit}}</text>
-                                        </view>
-										
-										 <view class="cat-price" wx:else>
-                                            {{item.price}}
-											<text class="unit">元/{{item.unit}}</text>
-                                        </view>
-										
-										
-										
-										
-										
-                                    </navigator>
+                                    </view>
                                 </view>
 
                             </block>

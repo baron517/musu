@@ -7,28 +7,57 @@
 
         <view  style="height: 100%;" class="flex-row">
 
-            <view class="flex-grow-1" style="background: #f6dae1">
+            <view class="flex-grow-1" >
                 <view>
-                    <scroll-view class="sub-cat-box cat-block-list" scroll-y="true" style="height: 100%;padding: 20rpx;"
+                    <scroll-view class="sub-cat-box cat-block-list" scroll-y="true" style="height: 100%;padding: 20rpx 0;"
                                  scroll-top="{{sub_cat_list_scroll_top}}">
 
                         <!-- 小图标模式（开启侧栏） -->
-                        <view class="cat-small-style cat-num-3 flex-row">
+                        <view class="cat-small-style">
                             <block>
 
-                                <view wx:for="{{goods_list}}" wx:key="{{item.c_id}}" class="flex-grow-0">
-                                    <navigator class="cat-item " url="{{item.c_link}}">
+                                <view wx:for="{{goods_list}}" wx:key="{{item.id}}" class="item-col" wx:for-index="index">
 
                                         <view class="cat-name">
-                                            {{item.c_name}}
+                                            {{item.name}}
                                         </view>
 
-                                    </navigator>
+                                        <view class="cat-xuanze">
+
+                                        <picker bindchange="changeValue" id="{{index}}"  value="{{pickerValue}}" range="{{item.list}}" range-key="{{'cname'}}">
+                                            <view class="tui-picker-detail">{{item.list[item.activeIndex].cname?item.list[item.activeIndex].cname:"请选择型材规格"}}</view>
+                                        </picker>
+
+                                        <view class="table-col" wx:if="{{item.list[item.activeIndex].cname}}">
+                                            <view class="table-row">
+                                                <view class="cell1">产品示意图</view>
+                                                <view class="cell2">型材规格</view>
+                                                <view class="cell3">米重（kg）</view>
+                                                <view class="cell4">米价</view>
+                                                <view class="cell5">平方价</view>
+                                            </view>
+                                            <view class="table-row" >
+                                                <view class="cell1">
+                                                    <image class="cell1-img" src="{{item.list[item.activeIndex].cover_pic}}"></image>
+                                                </view>
+                                                <view class="cell2">{{item.list[item.activeIndex].xinghao_guige}}</view>
+                                                <view class="cell3">{{item.list[item.activeIndex].mizhong}}</view>
+                                                <view class="cell4">{{item.list[item.activeIndex].mijia3}}</view>
+                                                <view class="cell5">{{item.list[item.activeIndex].pfj3}}</view>
+                                            </view>
+                                        </view>
+										
+										<navigator wx:if="{{item.list[item.activeIndex].cname}}" url="/pages/goods/goods?id={{item.list[item.activeIndex].id}}" class="xiadan-btn">
+										立即下单
+										</navigator>
+										
+
+                                        </view>
+
                                 </view>
 
                             </block>
                         </view>
-
 
 
                     </scroll-view>

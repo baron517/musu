@@ -17,11 +17,19 @@ Page({
         express_price_1: 0.00,
         integral_radio: 1,
         new_total_price: 0,
+		new_total_price1: 0,
+		new_total_price2: 0,
         show_card: false,
         payment: -1,
         show_payment: false,
         show_more: false,
         index: -1,
+		info:'',
+		levelValue:-1,
+		info1:'',
+		infoList:[],
+		infoList1:[],
+		priceValue:0,
         mch_offline: true
     },
 
@@ -29,7 +37,36 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+		
+		console.log(options);
+		console.log("数据");
+		
         getApp().page.onLoad(this, options);
+		
+		var store = getApp().core.getStorageSync(getApp().const.STORE);
+		var user_info = getApp().getUser();
+		this.data.level=user_info.level;
+		console.log("level:"+this.data.level);
+		this.setData({
+                levelValue: this.data.level
+		});
+		
+		if(options.info)
+		{
+			this.data.info=options.info;
+			this.data.info1=options.info1;
+			this.data.priceValue=options.price;
+			
+			this.setData({
+            info: this.data.info,
+			info1: this.data.info1,
+			infoList:this.data.info.split("|"),
+			infoList1:this.data.info1.split("|"),
+            priceValue: this.data.priceValue
+			});
+			
+		}
+		
         var self = this;
         var time = util.formatData(new Date());
         getApp().core.removeStorageSync(getApp().const.INPUT_DATA);
@@ -189,6 +226,34 @@ Page({
 
         data.payment = self.data.payment;
         data.formId = e.detail.formId;
+		
+		if(self.data.info)
+		{
+			data.priceValue=this.data.priceValue;
+			data.info=this.data.info;
+			data.info1=this.data.info1;
+		}
+		else{
+			
+			console.log(self.data.levelValue);
+			
+			if(self.data.levelValue==1)
+			{
+				data.priceValue=self.data.new_total_price1;
+			}
+			else if(self.data.levelValue==2)
+			{
+				data.priceValue=self.data.new_total_price2;
+			}
+			else{
+				
+				data.priceValue=self.data.new_total_price;
+			}
+			
+			
+		}
+		
+		console.log(data);
 
         self.order_submit(data, 's');
     },
@@ -464,14 +529,24 @@ Page({
         var integral_radio = self.data.integral_radio;
         var integral = self.data.integral;
         var new_total_price = 0;
+		 var new_total_price1 = 0;
+		  var new_total_price2 = 0;
         var is_area = 0;
         var offer_rule = {};
         var coupon_price = 0;
+		var coupon_price1 = 0;
+		var coupon_price2 = 0;
         for (var i in mch_list) {
             var mch = mch_list[i];
             var total_price = parseFloat(mch.total_price);
+			var total_price1 = parseFloat(mch.total_price1);
+			var total_price2 = parseFloat(mch.total_price2);
             var level_price = parseFloat(mch.level_price);
+			 var level_price1 = parseFloat(mch.level_price1);
+			  var level_price2 = parseFloat(mch.level_price2);
             var price = level_price;
+			 var price1 = level_price1;
+			  var price2 = level_price2;
             var goods = mch_list[i].goods_list;
             coupon_price = 0;
             if (mch.picker_coupon && mch.picker_coupon.sub_price > 0) { // 计算优惠券
@@ -482,6 +557,8 @@ Page({
                             var sts = self.contains(mch.picker_coupon.cat_id_list,item.cat_id[item1]);
                             if(sts!=-1){
                                 coupon_price = coupon_price + parseFloat(item.price);
+								coupon_price1 = coupon_price2 + parseFloat(item.price1);
+								coupon_price2 = coupon_price2 + parseFloat(item.price2);
                             };
                             continue;                            
                         }
@@ -491,23 +568,38 @@ Page({
                         var sts = self.contains(mch.picker_coupon.goods_id_list,item.goods_id);
                         if(sts!=-1){
                             coupon_price = coupon_price + parseFloat(item.price);
+							coupon_price1 = coupon_price1 + parseFloat(item.price1);
+							coupon_price2 = coupon_price2 + parseFloat(item.price2);
                         }
                     })
 
                 };
                 if(mch.picker_coupon.sub_price > coupon_price && coupon_price > 0) {
                      price = price - parseFloat(coupon_price);
-                } else {
+                } 
+				else if(mch.picker_coupon.sub_price > coupon_price && coupon_price > 0) {
+                     price1 = price1 - parseFloat(coupon_price1);
+                } 
+				else if(mch.picker_coupon.sub_price > coupon_price && coupon_price > 0) {
+                     price2 = price2 - parseFloat(coupon_price2);
+                } 
+				else {
                     price = price - mch.picker_coupon.sub_price;
+					price1 = price1 - mch.picker_coupon.sub_price;
+					price2 = price2 - mch.picker_coupon.sub_price;
                 }
                 
             }
             if (mch.integral && mch.integral.forehead > 0 && integral_radio == 1) { // 计算积分
                 price = price - parseFloat(mch.integral.forehead);
+				 price1 = price1 - parseFloat(mch.integral.forehead);
+				  price2 = price2 - parseFloat(mch.integral.forehead);
             }
             if (mch.offline == 0) { 
                 if (mch.express_price) {// 计算运费
                     price = price + mch.express_price;
+					price1 = price1 + mch.express_price;
+					price2 = price2 + mch.express_price;
                 }
                 if (mch.offer_rule && mch.offer_rule.is_allowed == 1) {
                     offer_rule = mch.offer_rule;
@@ -516,11 +608,27 @@ Page({
                     is_area = 1;
                 }
             }
+			
+			console.log("new_total_price"+new_total_price);
+			
             new_total_price = new_total_price + parseFloat(price);
+			new_total_price1 = new_total_price1 + parseFloat(price1);
+			new_total_price2 = new_total_price2 + parseFloat(price2);
+			
+			console.log("new_total_price"+new_total_price);
+			
+			
         }
         new_total_price = new_total_price >= 0 ? new_total_price : 0;
+		new_total_price1 = new_total_price1 >= 0 ? new_total_price1 : 0;
+		new_total_price2 = new_total_price2 >= 0 ? new_total_price2 : 0;
+		
+		console.log("new_total_price1:"+new_total_price1);
+		
         self.setData({
             new_total_price: new_total_price.toFixed(2),
+			new_total_price1: new_total_price1.toFixed(2),
+			new_total_price2: new_total_price2.toFixed(2),
             offer_rule: offer_rule,
             is_area: is_area
         });

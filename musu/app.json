@@ -39,8 +39,11 @@
     "pages/tingzi/index",
 
     "pages/chengpin/index",
+	"pages/xuanze/index",
     "pages/xingcai/index",
     "pages/banchengpin/index",
+
+    "pages/yangtai/index",
 
     "pages/coupon/coupon",
     "pages/clerk/clerk",

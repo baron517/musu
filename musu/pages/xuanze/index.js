@@ -10,7 +10,6 @@ Page({
         cat_list: [],
         sub_cat_list_scroll_top: 0,
         scrollLeft: 0,
-        xuanpeiList:[],
         page: 1,
         typeIndex:0,
         cat_id:0,
@@ -27,12 +26,6 @@ Page({
         var self = this;
         getApp().page.onLoad(self, options);
         var store = getApp().core.getStorageSync(getApp().const.STORE);
-		
-		var user_info = getApp().getUser();
-		this.data.level=user_info.level;
-		this.setData({
-                level: this.data.level
-		});
 
     },
 
@@ -44,6 +37,22 @@ Page({
         this.loadData();
 
     },
+	
+	xuanze:function(e)
+	{
+		console.log(e);
+		var xuanzeIndex=e.target.id;
+		
+		var app = getApp();
+		app.globalData.kuanshiData = {id:this.data.goods_list[xuanzeIndex].id, name:this.data.goods_list[xuanzeIndex].name}; 
+		
+		wx.navigateBack({
+			delta: 1  // 返回上一级页面。
+		});
+		
+	},
+	
+	
 
     loadData: function (options) {
         // 返回上一步  5 4
@@ -58,7 +67,7 @@ Page({
         }
 
         getApp().request({
-            url: getApp().api.default.tingziList,
+            url: getApp().api.default.hulanList,
             success: function (res) {
 
                 console.log("分类");
@@ -69,11 +78,7 @@ Page({
                     console.log(res);
                     if (res.code == 1000) {
                         getApp().core.hideLoading();
-                        for(var i=0;i<res.data.tingziList.length;i++)
-                        {
-                            res.data.tingziList[i].tagsList=res.data.tingziList[i].tags.split("|");
-                        }
-                        self.setData({goods_list: res.data.tingziList,xuanpeiList:res.data.xuanpeiList});
+                        self.setData({goods_list: res.data});
                     }
                     self.setData({
                         show_no_data_tip: (self.data.length == 0),
@@ -87,7 +92,7 @@ Page({
         });
 
         getApp().request({
-            url: getApp().api.default.tingzifahuo,
+            url: getApp().api.default.fahuo,
             success: function (res) {
 
                 console.log("分类");

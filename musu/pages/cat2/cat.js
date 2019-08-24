@@ -15,6 +15,7 @@ Page({
         cat_style:0,
         active_index:0,
         height:0,
+		indexValue:0,
         catheight:120,
     }, 
 
@@ -26,8 +27,17 @@ Page({
         getApp().page.onLoad(self, options);
         var store = getApp().core.getStorageSync(getApp().const.STORE);
         var cat_id = options.cat_id;
+		
+		if(options.index)
+		{
+			var indexValue=options.index;
+		}
+		
+		console.log(options);
+
         self.setData({
-            cat_id: cat_id
+            cat_id: cat_id,
+			indexValue:indexValue
         });
 
 
@@ -77,7 +87,7 @@ Page({
                         current_cat: null
                     });
 
-                    self.catClick(0);
+                    self.catClick(self.data.indexValue);
 
                 };
             },

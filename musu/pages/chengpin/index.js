@@ -26,6 +26,12 @@ Page({
         var self = this;
         getApp().page.onLoad(self, options);
         var store = getApp().core.getStorageSync(getApp().const.STORE);
+		
+		var user_info = getApp().getUser();
+		this.data.level=user_info.level;
+		this.setData({
+                level: this.data.level
+		});
 
     },
 
@@ -51,7 +57,7 @@ Page({
         }
 
         getApp().request({
-            url: getApp().api.default.chaxunList,
+            url: getApp().api.default.chengpinList,
             success: function (res) {
 
                 console.log("分类");

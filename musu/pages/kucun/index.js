@@ -27,6 +27,13 @@ Page({
         getApp().page.onLoad(self, options);
         var store = getApp().core.getStorageSync(getApp().const.STORE);
 
+		var user_info = getApp().getUser();
+		this.data.level=user_info.level;
+		this.setData({
+                level: this.data.level
+		});
+		
+
     },
 
     onShow: function () {
@@ -50,9 +57,33 @@ Page({
             return;
         }
 
+        getApp().request({
+            url: getApp().api.default.kucunxilie,
+            success: function (res) {
+
+                console.log("分类");
+                console.log(res);
+
+                if(res.code == 1000){
+
+                    console.log(res);
+                    if (res.code == 1000) {
+                        getApp().core.hideLoading();
+                        self.setData({goods_list: res.data});
+                    }
+                    self.setData({
+                        show_no_data_tip: (self.data.length == 0),
+                    });
+
+                };
+            },
+            complete: function () {
+                getApp().core.stopPullDownRefresh();
+            }
+        });
 
         getApp().request({
-            url: getApp().api.default.kucunchaxun,
+            url: getApp().api.default.fahuo,
             success: function (res) {
 
                 console.log("分类");

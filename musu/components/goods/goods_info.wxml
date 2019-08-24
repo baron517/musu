@@ -70,7 +70,10 @@
                         <text class='min_price is_member'>{{goods.min_price}}</text>
                     </block>
                     <block wx:else>
-                        <text class='min_price is_member'>{{goods.min_member_price}}</text>
+					
+                        <text class='min_price is_member' wx:if="{{level==1}}">{{goods.price1}}</text>
+						<text class='min_price is_member' wx:if="{{level==2}}">{{goods.price2}}</text>
+						
                         <image wx:if='{{goods.is_level === true}}' class='img' src='{{__wxapp_img.store.member_price.url}}'></image>
                     </block>
                 </view>

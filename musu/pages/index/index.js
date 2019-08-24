@@ -185,6 +185,9 @@ Page({
     onShow: function() {
         var self = this;
         getApp().page.onShow(this);
+		
+		self.loadData1();
+		
         var diy = require('./../../components/diy/diy.js');
         diy.init(this);
         getApp().getConfig(function(config) {
@@ -200,6 +203,35 @@ Page({
                 self.setData({
                     buy_user: '',
                 })
+            }
+        });
+		
+		
+		
+    },
+	
+	loadData1: function (options) {
+        var self = this;
+        self.setData({
+            store: getApp().core.getStorageSync(getApp().const.STORE),
+        });
+        getApp().request({
+            url: getApp().api.user.index,
+            success: function (res) {
+                if (res.code == 0) {
+                    if(self.data.__platform=='my'){
+                        var menus = res.data.menus;
+                        menus.forEach(function(item,index,array){
+                            if(item.id==='bangding'){
+                                res.data.menus.splice(index,1,0);
+                            }
+                        });
+                    }
+                    self.setData(res.data);
+                    getApp().core.setStorageSync(getApp().const.PAGES_USER_USER, res.data);
+                    getApp().core.setStorageSync(getApp().const.SHARE_SETTING, res.data.share_setting);
+                    getApp().core.setStorageSync(getApp().const.USER_INFO, res.data.user_info);
+                }
             }
         });
     },

@@ -8,13 +8,14 @@
         <view class="{{(show_attr_picker||show||no_scroll)?'no-scroll':''}}">
 
             <view style="padding-bottom: 120rpx">
+			
                 <include src="/components/goods/goods_banner.wxml" />
                 <include src="/components/goods/goods_info.wxml" />
 
                 <view class="tab-group">
                     <view class="flex-row tab-group-header">
                         <view bindtap="tabSwitch" data-tab="detail" class="flex-grow-1 flex-x-center tab-group-item {{tab_detail}}">
-                            <text class="flex-y-center">商品详情</text>
+                            <text class="flex-y-center">商品详情{{keyword}}</text>
                         </view>
                         <view wx:if='{{__is_comment}}' bindtap="tabSwitch" data-tab="comment" class="flex-grow-1 flex-x-center tab-group-item {{tab_comment}}">
                             <text class="flex-y-center">评价</text>

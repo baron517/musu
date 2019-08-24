@@ -20,6 +20,9 @@ Page({
         id: null,
         goods: {},
         show_attr_picker: false,
+		keyword:'',
+		dingchang:0,
+		mizhong:0,
         form: {
             number: 1,
         },
@@ -48,12 +51,50 @@ Page({
         },
         goodNumCount: 0,
     },
+	
+	inputChange:function(e)
+	{
+		
+		var value = e.detail.value;
+		
+		this.data.form.number=value*this.data.mizhong;
+
+		  this.setData({
+                form: this.data.form
+		 });
+		
+	},
+
+	shuliangChange:function(e)
+	{
+		
+		 
+		 
+		 var value = e.detail.value;
+		
+		this.data.mianji=Math.ceil(value/this.data.mizhong);
+		
+		 this.setData({
+                mianji: this.data.mianji
+		 });
+		
+		
+	},		
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
         getApp().page.onLoad(this, options);
+		
+		var store = getApp().core.getStorageSync(getApp().const.STORE);
+		
+		var user_info = getApp().getUser();
+		this.data.level=user_info.level;
+		this.setData({
+                level: this.data.level
+		});
+		
 
         var self = this;
         share_count = 0;
@@ -260,6 +301,9 @@ Page({
 
                     self.setData({
                         goods: goods,
+						keyword:res.data.keyword,
+						mizhong:res.data.mizhong,
+						dingchang:res.data.xinghao_guige,
                         attr_group_list: res.data.attr_group_list,
                         btn: true
                     });

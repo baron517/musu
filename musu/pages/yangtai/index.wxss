@@ -10,6 +10,7 @@
 }
 
 .cat-list .cat-item.active{
+    background: #fff;
     color: #ff4544;
     border-left-color: #ff4544;
 }
@@ -24,6 +25,9 @@
     overflow: hidden;
 }
 
+.sub-cat-box{
+    background: #fff;
+}
 
 .sub-cat-header{
     height: 106rpx;
@@ -126,33 +130,25 @@
     width: 25%;
 }
 
-.cat-small-style .item-col{
-    position: relative;
-    padding:10rpx 0;
-    margin-bottom:30rpx;
+.cat-small-style .cat-item{
+    position: relative;padding-left:260rpx;
+    height:250rpx;
 }
 
-.cat-small-style .item-col .cat-xuanze
-{
-    background: #fff;
-    padding:20rpx 20rpx;
+.cat-small-style .cat-item .cat-icon{
+    width: 240rpx;
+    height: 240rpx;
+    position: absolute;
+    left:0;top:0;
 }
 
-.tui-picker-detail{
-    height: 60rpx;
-    line-height: 60rpx;
-    background-color: #fff;
-    font-size: 35rpx;
-    padding: 0 10px;
-    overflow: hidden;
-}
-
-.cat-small-style .item-col .cat-name{
+.cat-small-style .cat-item .cat-name{
     padding: 16rpx 18rpx;
     position: relative;
     font-size:32rpx;
     font-weight: bold;
 }
+
 .cat-small-style .cat-item .cat-tag{
     padding: 6rpx 18rpx;
     position: relative;
@@ -184,19 +180,6 @@
     width: 68rpx;
     height: 68rpx;
 }
-
-.table-col{border-left:1px solid #ccc;border-top:1px solid #ccc;margin-top:20rpx;}
-.table-col .table-row{height:80rpx;line-height:80rpx;font-size:24rpx;}
-.table-col .table-row view{border-right:1px solid #ccc;border-bottom:1px solid #ccc;height:80rpx;line-height:80rpx;text-align: center;}
-.table-col .table-row .cell1{float:left;width:24%;}
-.table-col .table-row .cell2{float:left;width:28%;}
-.table-col .table-row .cell3{float:left;width:20%;}
-.table-col .table-row .cell4{float:left;width:14%;}
-.table-col .table-row .cell5{float:left;width:14%;}
-
-.table-col .table-row .cell1 .cell1-img{width:80rpx;height:80rpx;}
-
-
 .search-icon{ 
     height: 92rpx;
     padding: 0 24rpx;
@@ -247,6 +230,7 @@
     position: relative;
     margin: 0 5rpx;
     margin-bottom: 10rpx;
+    background: #fff;
 }
 .goods-item .goods-pic{
     width: 100%;
@@ -275,24 +259,3 @@
 .loading-bar.active{
     visibility: visible;
 }
-
-.xiadan-btn{
-border:1px solid #ff4544;
-color:#ff4544;
-margin:30rpx 0rpx 10rpx 0;
-display:inline-block;
-padding:10rpx 20rpx;
-border-radius:10rpx;
-}
-
-
-
-
-
-
-
-
-
-
-
-

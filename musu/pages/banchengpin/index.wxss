@@ -3,6 +3,13 @@
     background: #f7f7f7;
 }
 
+.xuanze-col .peijian-list{line-height:70rpx;padding-top:12rpx;}
+
+.top-tab{position: fixed;left:0;top:0;width:100%;height:80rpx;background: #f7f7f7;z-index:100;}
+.tab-detail{width:33.33%;float:left;line-height: 80rpx;text-align: center;}
+.tab-detail.active{color: #ff4544;}
+.tab-detail.active .text{border-bottom:2px solid #ff4544;}
+
 .cat-list .cat-item{
     height: 106rpx;
     text-align: center;
@@ -108,6 +115,16 @@
 }
 /* 隐藏侧栏的样式 end */
 
+.xuanze-col{padding-left:160rpx;position: relative;box-sizing: border-box;line-height:100rpx;border-bottom:1px solid #ddd;min-height:100rpx;}
+.xuanze-col .label{position: absolute;left:0;top:0;color:#000;}
+.xuanze-col .tui-picker-detail{color:#999;}
+.xuanze-col .xuanze-input{line-height:100rpx;position: relative;top:20rpx;}
+
+.price-col{color:#dc0000;padding:10rpx 0;}
+.price-col .text{font-size:36rpx;}
+
+.button-col{padding:20rpx 0;}
+.button{background: #dc0000;color:#fff;font-size:32rpx;padding:20rpx 0;text-align: center;border-radius: 10rpx;}
 
 .cat-small-style{
     -webkit-flex-wrap: wrap;
@@ -130,20 +147,50 @@
     width: 25%;
 }
 
+.cat-small-style .cat-item{
+    position: relative;padding-left:260rpx;
+    height:250rpx;
+}
+
 .cat-small-style .cat-item .cat-icon{
-    width: 330rpx;
-    height: 330rpx;
+    width: 240rpx;
+    height: 240rpx;
+    position: absolute;
+    left:0;top:0;
 }
 
 .cat-small-style .cat-item .cat-name{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding: 10rpx 18rpx;
+    padding: 16rpx 18rpx;
     position: relative;
+    font-size:32rpx;
+    font-weight: bold;
 }
 
+.cat-small-style .cat-item .cat-name .text{font-size:26rpx;margin-left:10rpx;font-weight: normal;}
+
+.cat-small-style .cat-item .cat-tag{
+    padding: 6rpx 18rpx;
+    position: relative;
+    font-size:20rpx;
+    border-radius: 8rpx;
+    margin-left:4rpx;
+    border:1px solid #ccc;
+    display: inline-block;
+}
+
+
+.cat-small-style .cat-item .cat-price{
+    font-size:36rpx;color:#fe3132;
+    padding: 20rpx 18rpx;
+    font-weight:bold;
+}
+
+.cat-small-style .cat-item .cat-price .unit{font-size:24rpx;}
+
+
 .cat-small-style .cat-item .cat-name .icon{position: absolute;right:10rpx;width:40rpx;height:40rpx;}
+
+.cat-small-style .cat-item .cat-name .text{font-size:26rpx;margin-left:10rpx;font-weight: normal;}
 
 .advert{
     /* padding: 20rpx 24rpx 0rpx 22rpx; */
@@ -235,3 +282,14 @@
 .loading-bar.active{
     visibility: visible;
 }
+
+.xiadan-btn{
+background:#dc0000;
+color:#fff;
+text-align:center;
+margin:0 0rpx 10rpx 0;
+padding:20rpx 20rpx;
+border-radius:10rpx;
+}
+
+

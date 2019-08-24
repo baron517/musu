@@ -17,6 +17,14 @@ Page({
      */
     onLoad: function(options) {
         getApp().page.onLoad(this, options);
+		
+		var user_info = getApp().getUser();
+		this.data.level=user_info.level;
+		this.setData({
+                level: this.data.level
+		});
+		
+		
     },
 
     /**
@@ -80,6 +88,10 @@ Page({
             var item_index = index.currentTarget.dataset.index;
             self.data.mch_list[mch_index].list[item_index].num = self.data.mch_list[mch_index].list[item_index].num - 1;
             self.data.mch_list[mch_index].list[item_index].price = self.data.mch_list[mch_index].list[item_index].num * self.data.mch_list[mch_index].list[item_index].unitPrice;
+			
+			self.data.mch_list[mch_index].list[item_index].price1 = self.data.mch_list[mch_index].list[item_index].num * self.data.mch_list[mch_index].list[item_index].unitPrice1;
+			self.data.mch_list[mch_index].list[item_index].price2 = self.data.mch_list[mch_index].list[item_index].num * self.data.mch_list[mch_index].list[item_index].unitPrice2;
+			
             self.setData({
                 mch_list: self.data.mch_list,
             });
@@ -89,6 +101,10 @@ Page({
                 if (index.currentTarget.id == cart_list[i]['cart_id']) {
                     cart_list[i]['num'] = self.data.cart_list[i]['num'] - 1;
                     cart_list[i]['price'] = self.data.cart_list[i]['unitPrice'] * cart_list[i]['num'];
+					
+					cart_list[i]['price1'] = self.data.cart_list[i]['unitPrice1'] * cart_list[i]['num'];
+					cart_list[i]['price2'] = self.data.cart_list[i]['unitPrice2'] * cart_list[i]['num'];
+					
                     self.setData({
                         cart_list: cart_list,
                     });
@@ -106,6 +122,11 @@ Page({
             var item_index = index.currentTarget.dataset.index;
             self.data.mch_list[mch_index].list[item_index].num = self.data.mch_list[mch_index].list[item_index].num + 1;
             self.data.mch_list[mch_index].list[item_index].price = self.data.mch_list[mch_index].list[item_index].num * self.data.mch_list[mch_index].list[item_index].unitPrice;
+			
+			self.data.mch_list[mch_index].list[item_index].price1 = self.data.mch_list[mch_index].list[item_index].num * self.data.mch_list[mch_index].list[item_index].unitPrice1;
+			
+			self.data.mch_list[mch_index].list[item_index].price2 = self.data.mch_list[mch_index].list[item_index].num * self.data.mch_list[mch_index].list[item_index].unitPrice2;
+			
             self.setData({
                 mch_list: self.data.mch_list,
             });
@@ -115,6 +136,10 @@ Page({
                 if (index.currentTarget.id == cart_list[i]['cart_id']) {
                     cart_list[i]['num'] = self.data.cart_list[i]['num'] + 1;
                     cart_list[i]['price'] = self.data.cart_list[i]['unitPrice'] * cart_list[i]['num'];
+					
+					cart_list[i]['price1'] = self.data.cart_list[i]['unitPrice1'] * cart_list[i]['num'];
+					cart_list[i]['price2'] = self.data.cart_list[i]['unitPrice2'] * cart_list[i]['num'];
+					
                     self.setData({
                         cart_list: cart_list,
                     });
@@ -177,19 +202,27 @@ Page({
     updateTotalPrice: function() {
         var self = this;
         var total_price = 0.00;
+		var total_price1 = 0.00;
+		var total_price2 = 0.00;
         var cart_list = self.data.cart_list;
         for (var i in cart_list) {
             if (cart_list[i].checked)
                 total_price += cart_list[i].price;
+			total_price1 += cart_list[i].price1;
+			total_price2 += cart_list[i].price2;
         }
         for (var i in self.data.mch_list) {
             for (var j in self.data.mch_list[i].list) {
                 if (self.data.mch_list[i].list[j].checked)
                     total_price += self.data.mch_list[i].list[j].price;
+				 total_price1 += self.data.mch_list[i].list[j].price1;
+				  total_price2 += self.data.mch_list[i].list[j].price2;
             }
         }
         self.setData({
             total_price: total_price.toFixed(2),
+			total_price1: total_price1.toFixed(2),
+			total_price2: total_price2.toFixed(2)
         });
     },
 

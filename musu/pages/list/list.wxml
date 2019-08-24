@@ -62,7 +62,13 @@
                 <view class="goods-info" style='padding:5rpx 20rpx;'>
                     <text class="mb-10 text-more-2" style='height:2.8em;line-height:1.4;'>{{item.name}}</text>
                     <view class='flex-row'>
-                        <view class='flex-grow-1' style='color:#ff334b'>￥{{item.price}}</view>
+					
+						<view class='flex-grow-1' style='color:#ff334b' wx:if="{{level==1}}">￥{{item.price1}}</view>
+						<view class='flex-grow-1' style='color:#ff334b' wx:elif="{{level==2}}">￥{{item.price2}}</view>
+					
+                        <view class='flex-grow-1' style='color:#ff334b' wx:else>￥{{item.price}}</view>
+						
+						
                         <view wx:if='{{__is_sales}}' class='flex-grow-0 fs-sm' style='color:#999;'>已售{{item.sales}}</view>
                     </view>
                 </view>

@@ -6,7 +6,9 @@ Page({
     /**
      * 页面的初始数据
      */
-    data: {},
+    data: {
+		wuliu:''
+	},
 
     /**
      * 生命周期函数--监听页面加载
@@ -24,12 +26,26 @@ Page({
                 type: 'mall'
             }
         }
+		
+		if(options.wuliu&&options.wuliu!="null")
+		{
+			this.data.wuliu=options.wuliu;
+			
+			this.setData({
+                        wuliu:this.data.wuliu
+                    })
+			
+		}
+
         this.loadData(data);
     },
     /**
      * 加载页面数据
      */
     loadData: function (data) {
+		
+		console.log(data);
+		
         var self = this;
         getApp().core.showLoading({
             title: "正在加载",

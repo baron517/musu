@@ -18,6 +18,16 @@ Page({
     onLoad: function (options) {
         getApp().page.onLoad(this, options);
         this.loadData(options);
+		
+		var store = getApp().core.getStorageSync(getApp().const.STORE);
+		
+		var user_info = getApp().getUser();
+		this.data.level=user_info.level;
+		
+		this.setData({
+                level: this.data.level
+		});
+		
     },
 
     /**

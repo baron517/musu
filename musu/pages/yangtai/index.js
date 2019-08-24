@@ -10,7 +10,6 @@ Page({
         cat_list: [],
         sub_cat_list_scroll_top: 0,
         scrollLeft: 0,
-        xuanpeiList:[],
         page: 1,
         typeIndex:0,
         cat_id:0,
@@ -58,7 +57,7 @@ Page({
         }
 
         getApp().request({
-            url: getApp().api.default.tingziList,
+            url: getApp().api.default.yangtaiList,
             success: function (res) {
 
                 console.log("分类");
@@ -69,11 +68,7 @@ Page({
                     console.log(res);
                     if (res.code == 1000) {
                         getApp().core.hideLoading();
-                        for(var i=0;i<res.data.tingziList.length;i++)
-                        {
-                            res.data.tingziList[i].tagsList=res.data.tingziList[i].tags.split("|");
-                        }
-                        self.setData({goods_list: res.data.tingziList,xuanpeiList:res.data.xuanpeiList});
+                        self.setData({goods_list: res.data});
                     }
                     self.setData({
                         show_no_data_tip: (self.data.length == 0),
@@ -87,7 +82,7 @@ Page({
         });
 
         getApp().request({
-            url: getApp().api.default.tingzifahuo,
+            url: getApp().api.default.fahuo,
             success: function (res) {
 
                 console.log("分类");

@@ -78,8 +78,8 @@
 
     <view wx:else direction="all" class="quick-icon {{__device}}">
         <view class="flex-col flex-y-center flex-x-center quick-bg" bindtap="cutover">
-            <text class="quick-text">快捷</text> 
-            <text class="quick-text">导航</text>
+            <text class="quick-text">联系</text> 
+            <text class="quick-text">客服</text>
         </view>
     </view>
 

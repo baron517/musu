@@ -93,6 +93,12 @@ let args = {
             this.trigger.run(this.trigger.events.login);
         }
     },
+	globalData :{
+	  kuanshiData:{
+		  name:'',
+		  id:0
+	  }    
+	},
     is_login: false,
     login_complete: false,
     is_form_id_request: true

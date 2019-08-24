@@ -25,8 +25,8 @@
                                             {{item.name}}
                                         </view>
 
-                                        <view class="cat-tag" wx:for="{{item.tagsList}}" wx:for-item="iitem">
-                                            {{iitem}}
+                                        <view class="cat-tag">
+                                            {{item.beizhu}}
                                         </view>
 
                                         <view class="cat-price" wx:if="{{level==1}}">
@@ -49,52 +49,6 @@
                                 </view>
 
                             </block>
-                        </view>
-
-                        <view class="cat-small-style">
-                            <block>
-                                <view class="cat-title">自行选配：</view>
-                                <view wx:for="{{xuanpeiList}}" wx:key="{{item.c_id}}" class="item-col">
-                                    <navigator class="cat-item " url="/pages/goods/goods?id={{item.id}}">
-
-                                        <image class="cat-icon" src="{{item.cover_pic}}"></image>
-
-                                        <view class="cat-name">
-                                            {{item.name}}
-                                        </view>
-
-                                        <view class="cat-tag">
-                                            {{item.beizhu}}
-                                        </view>
-
-                                     
-									 
-										 <view class="cat-price" wx:if="{{level==1}}">
-                                            {{item.price1}}
-											<text class="unit">元/{{item.unit}}</text>
-                                        </view>
-										
-										  <view class="cat-price" wx:elif="{{level==2}}">
-                                            {{item.price2}}
-											<text class="unit">元/{{item.unit}}</text>
-                                        </view>
-										
-										 <view class="cat-price" wx:else>
-                                            {{item.price}}
-											<text class="unit">元/{{item.unit}}</text>
-                                        </view>
-										
-									 
-                                    </navigator>
-                                </view>
-
-                            </block>
-                        </view>
-
-
-                        <view class="goods-detail">
-                            <import src="../../wxParse/wxParse.wxml" />
-                            <template is="wxParse" data="{{wxParseData:detail.nodes}}" />
                         </view>
 
 
